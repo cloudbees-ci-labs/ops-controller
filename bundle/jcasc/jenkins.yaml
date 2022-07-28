@@ -10,25 +10,8 @@ jenkins:
         value: "${GITHUB_USER}"
       - key: "BUNDLE_ID"
         value: "${CASC_BUNDLE_ID}"
-  quietPeriod: 0
-  systemMessage: 'Jenkins configured using CloudBees CI CasC v3'
-notificationConfiguration:
-  enabled: true
-  router: "operationsCenter"
+  systemMessage: 'Jenkins configured using CloudBees CI CasC with controller overrides'
 unclassified:
-  hibernationConfiguration:
-    activities:
-    - "build"
-    - "web"
-    enabled: true
-    gracePeriod: 1500
-  gitHubConfiguration:
-    apiRateLimitChecker: ThrottleForNormalize
-  gitHubPluginConfig:
-    hookSecretConfigs:
-    - credentialsId: "cloudbees-ci-workshop-github-webhook-secret"
-  globalDefaultFlowDurabilityLevel:
-    durabilityHint: PERFORMANCE_OPTIMIZED
   globallibraries:
     libraries:
     - defaultVersion: "main"
@@ -41,4 +24,4 @@ unclassified:
               repoOwner: "${GITHUB_ORGANIZATION}"
               repository: "pipeline-library"
   headerLabel:
-    text: "${GITHUB_APP}-bundle-v3"
+    text: "${GITHUB_APP}-bundle-v4"
