@@ -1,0 +1,65 @@
+jenkins:
+  globalNodeProperties:
+  - envVars:
+      env:
+      - key: "GITHUB_ORGANIZATION"
+        value: "${GITHUB_ORGANIZATION}"
+      - key: "GITHUB_REPOSITORY"
+        value: "ops-controller"
+      - key: "GITHUB_USER"
+        value: "${GITHUB_USER}"
+      - key: "BUNDLE_ID"
+        value: "${CASC_BUNDLE_ID}"
+  quietPeriod: 0
+  systemMessage: 'Jenkins configured using CloudBees CI CasC v1'
+notificationConfiguration:
+  enabled: true
+  router: "operationsCenter"
+unclassified:
+  hibernationConfiguration:
+    activities:
+    - "build"
+    - "web"
+    enabled: true
+    gracePeriod: 1500
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookSecretConfigs:
+    - credentialsId: "cloudbees-ci-workshop-github-webhook-secret"
+  globalDefaultFlowDurabilityLevel:
+    durabilityHint: PERFORMANCE_OPTIMIZED
+  globallibraries:
+    libraries:
+    - defaultVersion: "main"
+      name: "pipeline-library"
+      retriever:
+        modernSCM:
+          scm:
+            github:
+              credentialsId: "cloudbees-ci-casc-workshop-github-app"
+              repoOwner: "${GITHUB_ORGANIZATION}"
+              repository: "pipeline-library"
+  headerLabel:
+    text: "${GITHUB_APP}-bundle-v1"
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - string:
+          description: "CasC Update Secret"
+          id: "casc-update-secret"
+          scope: GLOBAL
+          secret: "${cbciCascWorkshopControllerProvisionSecret}"
+      - string:
+          description: "Webhook secret for CloudBees CI Workshop GitHub App"
+          id: "cloudbees-ci-workshop-github-webhook-secret"
+          scope: SYSTEM
+          secret: "${gitHubWebhookSecret}"
+      - gitHubApp:
+          apiUri: "https://api.github.com"
+          appID: "${cbciCascWorkshopGitHubAppId}"
+          description: "CloudBees CI CasC Workshop GitHub App credential"
+          id: "cloudbees-ci-casc-workshop-github-app"
+          owner: "${GITHUB_ORGANIZATION}"
+          privateKey: "${cbciCascWorkshopGitHubAppPrivateKey}"
