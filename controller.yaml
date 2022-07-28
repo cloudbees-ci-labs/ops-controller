@@ -3,12 +3,12 @@ removeStrategy:
   items: NONE
 items:
 - kind: folder
-  name: REPLACE_FOLDER_NAME
+  name: cloudbees-ci-labs
   groups:
   - members:
       users:
-      - REPLACE_GITHUB_USERNAME
-      - REPLACE_GITHUB_USERNAME-admin
+      - Vijaykumaryadavalli
+      - Vijaykumaryadavalli-admin
     roles:
     - name: browse
       grantedAt: current
@@ -20,12 +20,12 @@ items:
   - browse
   items:
   - kind: managedController
-    name: REPLACE_CONTROLLER_NAME
+    name: ops-controller
     properties:
     - healthReporting:
         enabled: true
     - configurationAsCode:
-        bundle: REPLACE_FOLDER_NAME-REPLACE_CONTROLLER_NAME
+        bundle: cloudbees-ci-labs-ops-controller
     configuration:
       kubernetes:
         memory: 4000
@@ -33,7 +33,7 @@ items:
         clusterEndpointId: default
         disk: 10
         storageClassName: premium-rwo
-        domain: REPLACE_FOLDER_NAME-REPLACE_CONTROLLER_NAME
+        domain: cloudbees-ci-labs-ops-controller
         namespace: controllers
         yaml: |
           kind: "StatefulSet"
@@ -49,15 +49,15 @@ items:
                   - name: "SECRETS"
                     value: "/var/jenkins_home/jcasc_secrets"
                   - name: "GITHUB_ORGANIZATION"
-                    value: "REPLACE_GITHUB_ORG"
+                    value: "cloudbees-ci-labs"
                   - name: "GITHUB_USER"
-                    value: "REPLACE_GITHUB_USERNAME"
+                    value: "Vijaykumaryadavalli"
                   - name: "GITHUB_APP"
-                    value: "REPLACE_GITHUB_APP"
+                    value: "cloudbees-ci-casc-workshop"
                   - name: "CONTROLLER_SUBDOMAIN"
-                    value: "REPLACE_FOLDER_NAME-REPLACE_CONTROLLER_NAME"
+                    value: "cloudbees-ci-labs-ops-controller"
                   - name: "CASC_BUNDLE_ID"
-                    value: "REPLACE_FOLDER_NAME-REPLACE_CONTROLLER_NAME"
+                    value: "cloudbees-ci-labs-ops-controller"
                   volumeMounts:
                   - name: "jcasc-secrets"
                     mountPath: "/var/jenkins_home/jcasc_secrets"
