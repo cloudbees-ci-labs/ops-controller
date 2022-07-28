@@ -1,0 +1,21 @@
+library 'pipeline-library'
+pipeline {
+  agent any
+  options {
+    timeout(time: 10, unit: 'MINUTES')
+  }
+  stages {
+    stage('Publish Provision Controller Event') {
+      when {
+        branch 'main'
+      }
+      environment { PROVISION_SECRET = credentials('casc-workshop-controller-provision-secret') }
+      steps {
+        gitHubParseOriginUrl()
+        publishEvent event:jsonEvent("""
+          {'controller':{'name':'${GITHUB_REPO}','action':'provision'},'github':{'organization':'${GITHUB_ORG}','repository':'${GITHUB_REPO}','user':'${GITHUB_USER}'},'secret':'${PROVISION_SECRET}'}
+        """), verbose: true
+      }
+    }
+  }
+}

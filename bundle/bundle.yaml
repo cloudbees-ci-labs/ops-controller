@@ -1,5 +1,5 @@
 apiVersion: "1"
-version: "4"
+version: "5"
 id: "cloudbees-ci-labs-ops-controller"
 description: "CloudBees CI configuration bundle for the cloudbees-ci-labs ops-controller Controller"
 parent: "base"
