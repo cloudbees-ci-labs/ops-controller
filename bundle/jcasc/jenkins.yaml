@@ -11,7 +11,7 @@ jenkins:
       - key: "BUNDLE_ID"
         value: "${CASC_BUNDLE_ID}"
   quietPeriod: 0
-  systemMessage: 'Jenkins configured using CloudBees CI CasC v2'
+  systemMessage: 'Jenkins configured using CloudBees CI CasC v3'
 notificationConfiguration:
   enabled: true
   router: "operationsCenter"
@@ -41,25 +41,4 @@ unclassified:
               repoOwner: "${GITHUB_ORGANIZATION}"
               repository: "pipeline-library"
   headerLabel:
-    text: "${GITHUB_APP}-bundle-v2"
-credentials:
-  system:
-    domainCredentials:
-    - credentials:
-      - string:
-          description: "CasC Update Secret"
-          id: "casc-update-secret"
-          scope: GLOBAL
-          secret: "${cbciCascWorkshopControllerProvisionSecret}"
-      - string:
-          description: "Webhook secret for CloudBees CI Workshop GitHub App"
-          id: "cloudbees-ci-workshop-github-webhook-secret"
-          scope: SYSTEM
-          secret: "${gitHubWebhookSecret}"
-      - gitHubApp:
-          apiUri: "https://api.github.com"
-          appID: "${cbciCascWorkshopGitHubAppId}"
-          description: "CloudBees CI CasC Workshop GitHub App credential"
-          id: "cloudbees-ci-casc-workshop-github-app"
-          owner: "${GITHUB_ORGANIZATION}"
-          privateKey: "${cbciCascWorkshopGitHubAppPrivateKey}"
+    text: "${GITHUB_APP}-bundle-v3"
