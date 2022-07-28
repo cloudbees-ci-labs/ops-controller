@@ -10,7 +10,7 @@ jenkins:
         value: "${GITHUB_USER}"
       - key: "BUNDLE_ID"
         value: "${CASC_BUNDLE_ID}"
-  systemMessage: 'Jenkins configured using CloudBees CI CasC with controller overrides'
+  systemMessage: 'Jenkins configured using CloudBees CI CasC with controller overrides v2'
 unclassified:
   globallibraries:
     libraries:
@@ -24,4 +24,4 @@ unclassified:
               repoOwner: "${GITHUB_ORGANIZATION}"
               repository: "pipeline-library"
   headerLabel:
-    text: "${GITHUB_APP}-bundle-v4"
+    text: "${GITHUB_APP}-bundle-v5"

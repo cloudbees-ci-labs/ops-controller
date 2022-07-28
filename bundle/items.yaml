@@ -14,6 +14,42 @@ items:
       filter: true
   items:
   - kind: organizationFolder
+    name: controller-provision
+    disabled: false
+    navigators:
+    - github:
+        apiUri: https://api.github.com
+        traits:
+        - gitHubBranchDiscovery:
+            strategyId: 1
+        - headWildcardFilter:
+            excludes: ''
+            includes: main
+        repoOwner: ${GITHUB_ORGANIZATION}
+        credentialsId: cloudbees-ci-casc-workshop-github-app
+    projectFactories:
+    - customMultiBranchProjectFactory:
+        factory:
+          customBranchProjectFactory:
+            marker: controller.yaml
+            definition:
+              cpsScmFlowDefinition:
+                scriptPath: controller-provision
+                scm:
+                  gitSCM:
+                    userRemoteConfigs:
+                    - userRemoteConfig:
+                        credentialsId: cloudbees-ci-casc-workshop-github-app
+                        url: https://github.com/${GITHUB_ORGANIZATION}/ops-controller.git
+                    branches:
+                    - branchSpec:
+                        name: '*/main'
+                lightweight: true
+    properties:
+    - suppressFolderAutomaticTriggering:
+        strategy: INDEXING
+        branches: .*
+  - kind: organizationFolder
     name: controller-casc-update
     disabled: false
     navigators:
