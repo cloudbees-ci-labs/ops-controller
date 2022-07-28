@@ -11,7 +11,7 @@ jenkins:
       - key: "BUNDLE_ID"
         value: "${CASC_BUNDLE_ID}"
   quietPeriod: 0
-  systemMessage: 'Jenkins configured using CloudBees CI CasC v1'
+  systemMessage: 'Jenkins configured using CloudBees CI CasC v2'
 notificationConfiguration:
   enabled: true
   router: "operationsCenter"
@@ -41,7 +41,7 @@ unclassified:
               repoOwner: "${GITHUB_ORGANIZATION}"
               repository: "pipeline-library"
   headerLabel:
-    text: "${GITHUB_APP}-bundle-v1"
+    text: "${GITHUB_APP}-bundle-v2"
 credentials:
   system:
     domainCredentials:
